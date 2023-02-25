@@ -52,11 +52,14 @@ class KuaiShouCrawler:
             return KuaiShouCrawler().filename
 
         # Write Content into file
-        file: object = open(setname(), 'wb')
-        file.write(writeable)
-        file.close()
+        try:
+            file: object = open(setname(), 'wb')
+            file.write(writeable)
+            file.close()
 
-        print("Done")
+            print("Download Completed")
+        except:
+            print("Download FAILED")
 
         if preview:
             os.system(
