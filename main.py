@@ -48,11 +48,11 @@ class KuaiShouCrawler:
             if os.path.exists("{current}/{file}".format(current=current_dir, file=KuaiShouCrawler().filename)):
                 char = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
                         'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-                return char[random.randint(0, 25)]
+                return char[random.randint(0, 25)] + ".mp4"
             return KuaiShouCrawler().filename
 
         # Write Content into file
-        file: object = open(KuaiShouCrawler().filename, 'wb')
+        file: object = open(setname(), 'wb')
         file.write(writeable)
         file.close()
 
