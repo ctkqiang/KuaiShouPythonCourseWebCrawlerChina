@@ -1,5 +1,5 @@
 class KuaiShouUrl:
-    def __int__(self, url, pKey, tag, clientCacheKey, token):
+    def __init__(self, url, pKey, tag, clientCacheKey, token):
         self.url = url
         self.pKey = pKey
         self.tag = tag
@@ -8,7 +8,7 @@ class KuaiShouUrl:
 
     def tostr(self=None) -> str:
         try:
-            return '{url}{token}{pKey}&tag={tag}&clientCacheKey={clientCacheKey}'.format(
+            return '{url}{token}?pkey={pKey}&tag={tag}&clientCacheKey={clientCacheKey}'.format(
                 url=self.url,
                 token=self.token,
                 pKey=self.pKey,

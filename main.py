@@ -7,8 +7,9 @@ except:
 
 class KuaiShouCrawler:
     """
-    Using #class for a better view of Object oriented Programming.
-    Pardon me please LaoShi, I am used to OOP.
+    @author: John Melody Me
+    Using #class for a better view of Object-Oriented Programming.
+    Pardon me please LaoShi, I am used to Object-Oriented Programming.
     The packages are required to be installed by execute command as following
 
         ```bash
@@ -22,12 +23,43 @@ class KuaiShouCrawler:
         self.pKey: str = 'AAWZKPBsY51B5gLywAZDOkLfQNVGwaADkGn_FMgEt0ymqbiSyjJrPFWSoktg5XZ4swyBNa3z-3wgvu2lJTRCvyzUn7PmWPZJEuJhlxqIzjAzP4_KPMQ2ky_wDSj52Kp9bYA'
         self.tag: str = '1-1677314739-unknown-0-o8geqc9oab-44b3760dd68550bd'
         self.clientCacheKey: str = '3x7is626qs3fjg4_hd15.mp4&di=b7ab66dd&bp=14944&tt=hd15&ss=vp'
-        self.token: str = 'BMjAyMjEwMDIxMTM0MjFfMjQzNzA2NTQxNF84NTQ4MTY2MTQ0MF8yXzM=_hd15_B7bdf92b6d808feb21eb0501f9eb02ee8.mp4?'
+        self.token: str = 'BMjAyMjEwMDIxMTM0MjFfMjQzNzA2NTQxNF84NTQ4MTY2MTQ0MF8yXzM=_hd15_B7bdf92b6d808feb21eb0501f9eb02ee8.mp4'
+        self.filename: str = 'kuai_shou_video_download.mp4'
 
     @classmethod
     def crawl(cls):
+        try:
+            crawler: object = KuaiShouCrawler()
 
-        pass
+            url: str = KuaiShouUrl(
+                url=crawler.kuai_shou_url,
+                pKey=crawler.pKey,
+                tag=crawler.tag,
+                clientCacheKey=crawler.clientCacheKey,
+                token=crawler.token
+            ).tostr()
+
+            if url is None:
+                raise "The url is Empty. (u_u)"
+
+            # HTTP/2 [Get] request
+            res: requests = requests.get(url)
+
+            if res.status_code == 0xC8:  # Status code [200]
+                body: object = res.content
+                # If the return data are different DataType, then you are doing something wrong
+                assert type(body) == bytes
+
+            elif res.status_code == 0x193: # Status code [403]
+                raise "You don't have permission to access to {}".format(url)
+            elif res.status_code == 0x194: # Status code [404]
+                raise "Do you have the correct URL?"
+            elif res.status_code == 0x1F4: # Status code [500]
+                raise "Server is down? "
+            else: # Status code [100 - 500] or the rest
+                raise "something is Wrong with the [get] Http/2 request"
+        except:
+            raise "Can't crawl (n_n)"
 
 
 if __name__ == "__main__":
