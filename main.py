@@ -9,7 +9,7 @@ except:
 
 class KuaiShouCrawler:
     """
-    @author: John Melody Me
+    @author: Cheng tze keong
     Using #class for a better view of Object-Oriented Programming.
     Pardon me please LaoShi, I am used to Object-Oriented Programming.
     The packages are required to be installed by execute command as following
